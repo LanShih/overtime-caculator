@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField, FormGroup, Button, Typography } from "@mui/material";
 
 const CalculatorForm = () => {
@@ -10,13 +10,18 @@ const CalculatorForm = () => {
   const [startWork, setStartWork] = useState<string>("");
   const [endWork, setEndWork] = useState<string>("");
 
+  useEffect(() => {
+    setBaseHour(localStorage.getItem("baseHour") || "");
+    setBreakTime(localStorage.getItem("breakTime") || "");
+  }, []);
+
   const handleSetBaseHour = (hour: string) => {
-    // localStorage.setItem("baseHour", hour.toString());
+    localStorage.setItem("baseHour", hour.toString());
     setBaseHour(hour);
   };
 
   const handleSetBreakTime = (hour: string) => {
-    // localStorage.setItem("breakTime", hour.toString());
+    localStorage.setItem("breakTime", hour.toString());
     setBreakTime(hour);
   };
 
